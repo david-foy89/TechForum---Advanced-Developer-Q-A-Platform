@@ -1,0 +1,14 @@
+{
+  "name": "techforum-database",
+  "version": "1.0.0",
+  "description": "Database setup and seeding for TechForum",
+  "main": "seed.js",
+  "scripts": {
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1"
+  }
+}

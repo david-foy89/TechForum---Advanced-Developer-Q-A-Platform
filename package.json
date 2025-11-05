@@ -1,0 +1,21 @@
+{
+  "name": "techforum",
+  "version": "1.0.0",
+  "description": "A comprehensive 3-tier forum application for developers",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm start",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "server:dev": "cd server && npm run dev",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "seed-db": "cd database && node seed.js"
+  },
+  "keywords": ["forum", "react", "express", "mongodb", "nodejs"],
+  "author": "TechForum Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
