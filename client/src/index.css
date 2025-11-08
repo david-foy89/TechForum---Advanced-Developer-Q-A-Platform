@@ -384,6 +384,41 @@ code {
   overflow: hidden;
 }
 
+/* Registration Form Error Styling */
+@media (max-width: 768px) {
+  .registration-form .flex.gap-2 {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .registration-form .w-48 {
+    width: 100%;
+  }
+}
+
+/* Enhanced form error styling */
+.form-error-box {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #dc2626;
+  font-size: 0.875rem;
+  font-weight: 500;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .bg-blue-50 {
   background-color: #eff6ff;
 }

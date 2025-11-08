@@ -118,190 +118,241 @@ const Register = () => {
         </div>
 
         {/* Registration Form */}
-        <form className="mt-6 sm:mt-8 space-y-4 sm:space-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className="registration-form mt-6 sm:mt-8 space-y-4 sm:space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             {/* Username Field */}
-            <div>
+            <div className="relative">
               <label htmlFor="username" className="form-label">
                 Username *
               </label>
-              <input
-                id="username"
-                type="text"
-                autoComplete="username"
-                className={`form-input ${errors.username ? 'border-red-300 focus:border-red-500' : ''}`}
-                placeholder="Choose a unique username"
-                {...register('username')}
-              />
-              {errors.username && (
-                <p className="form-error">{errors.username.message}</p>
-              )}
-              <p className="mt-1 text-xs text-gray-500">
-                3-50 characters, letters, numbers and underscores only
-              </p>
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <input
+                    id="username"
+                    type="text"
+                    autoComplete="username"
+                    className={`form-input w-full ${errors.username ? 'border-red-300 focus:border-red-500' : ''}`}
+                    placeholder="Choose a unique username"
+                    {...register('username')}
+                  />
+                  <p className="mt-1 text-xs text-gray-500">
+                    3-50 characters, letters, numbers and underscores only
+                  </p>
+                </div>
+                {errors.username && (
+                  <div className="flex-shrink-0 w-48">
+                    <p className="form-error-box">
+                      {errors.username.message}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Email Field */}
-            <div>
+            <div className="relative">
               <label htmlFor="email" className="form-label">
                 Email Address *
               </label>
-              <input
-                id="email"
-                type="email"
-                autoComplete="email"
-                className={`form-input ${errors.email ? 'border-red-300 focus:border-red-500' : ''}`}
-                placeholder="Enter your email address"
-                {...register('email')}
-              />
-              {errors.email && (
-                <p className="form-error">{errors.email.message}</p>
-              )}
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <input
+                    id="email"
+                    type="email"
+                    autoComplete="email"
+                    className={`form-input w-full ${errors.email ? 'border-red-300 focus:border-red-500' : ''}`}
+                    placeholder="Enter your email address"
+                    {...register('email')}
+                  />
+                </div>
+                {errors.email && (
+                  <div className="flex-shrink-0 w-48">
+                    <p className="form-error-box">
+                      {errors.email.message}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Password Field */}
-            <div>
+            <div className="relative">
               <label htmlFor="password" className="form-label">
                 Password *
               </label>
-              <div className="relative">
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  className={`form-input pr-10 ${errors.password ? 'border-red-300 focus:border-red-500' : ''}`}
-                  placeholder="Create a strong password"
-                  {...register('password')}
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-400" />
-                  ) : (
-                    <Eye className="h-4 w-4 text-gray-400" />
-                  )}
-                </button>
-              </div>
-              
-              {/* Password Strength Indicator */}
-              {watchPassword && (
-                <div className="mt-2">
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 bg-gray-200 rounded-full h-2">
-                      <div
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          passwordStrength.color === 'red' ? 'bg-red-500' :
-                          passwordStrength.color === 'yellow' ? 'bg-yellow-500' : 'bg-green-500'
-                        }`}
-                        style={{ width: `${(passwordStrength.score / 6) * 100}%` }}
-                      />
-                    </div>
-                    <span className={`text-xs font-medium ${
-                      passwordStrength.color === 'red' ? 'text-red-600' :
-                      passwordStrength.color === 'yellow' ? 'text-yellow-600' : 'text-green-600'
-                    }`}>
-                      {passwordStrength.text}
-                    </span>
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <div className="relative">
+                    <input
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      autoComplete="new-password"
+                      className={`form-input pr-10 w-full ${errors.password ? 'border-red-300 focus:border-red-500' : ''}`}
+                      placeholder="Create a strong password"
+                      {...register('password')}
+                    />
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-4 w-4 text-gray-400" />
+                      ) : (
+                        <Eye className="h-4 w-4 text-gray-400" />
+                      )}
+                    </button>
                   </div>
                 </div>
-              )}
+                {errors.password && (
+                  <div className="flex-shrink-0 w-48">
+                    <p className="form-error-box">
+                      {errors.password.message}
+                    </p>
+                  </div>
+                )}
+              </div>
               
-              {errors.password && (
-                <p className="form-error">{errors.password.message}</p>
-              )}
-              
-              {/* Password Requirements */}
-              <div className="mt-2 space-y-1">
-                <p className="text-xs text-gray-600">Password must contain:</p>
-                <div className="space-y-1">
-                  {[
-                    { test: watchPassword.length >= 6, text: 'At least 6 characters' },
-                    { test: /[a-z]/.test(watchPassword), text: 'One lowercase letter' },
-                    { test: /[A-Z]/.test(watchPassword), text: 'One uppercase letter' },
-                    { test: /\d/.test(watchPassword), text: 'One number' }
-                  ].map((requirement, index) => (
-                    <div key={index} className="flex items-center gap-1">
-                      {requirement.test ? (
-                        <Check className="w-3 h-3 text-green-500" />
-                      ) : (
-                        <X className="w-3 h-3 text-gray-400" />
-                      )}
-                      <span className={`text-xs ${requirement.test ? 'text-green-600' : 'text-gray-500'}`}>
-                        {requirement.text}
+              <div className="flex-1">
+                {/* Password Strength Indicator */}
+                {watchPassword && (
+                  <div className="mt-2">
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 bg-gray-200 rounded-full h-2">
+                        <div
+                          className={`h-2 rounded-full transition-all duration-300 ${
+                            passwordStrength.color === 'red' ? 'bg-red-500' :
+                            passwordStrength.color === 'yellow' ? 'bg-yellow-500' : 'bg-green-500'
+                          }`}
+                          style={{ width: `${(passwordStrength.score / 6) * 100}%` }}
+                        />
+                      </div>
+                      <span className={`text-xs font-medium ${
+                        passwordStrength.color === 'red' ? 'text-red-600' :
+                        passwordStrength.color === 'yellow' ? 'text-yellow-600' : 'text-green-600'
+                      }`}>
+                        {passwordStrength.text}
                       </span>
                     </div>
-                  ))}
+                  </div>
+                )}
+                
+                {/* Password Requirements */}
+                <div className="mt-2 space-y-1">
+                  <p className="text-xs text-gray-600">Password must contain:</p>
+                  <div className="space-y-1">
+                    {[
+                      { test: watchPassword.length >= 6, text: 'At least 6 characters' },
+                      { test: /[a-z]/.test(watchPassword), text: 'One lowercase letter' },
+                      { test: /[A-Z]/.test(watchPassword), text: 'One uppercase letter' },
+                      { test: /\d/.test(watchPassword), text: 'One number' }
+                    ].map((requirement, index) => (
+                      <div key={index} className="flex items-center gap-1">
+                        {requirement.test ? (
+                          <Check className="w-3 h-3 text-green-500" />
+                        ) : (
+                          <X className="w-3 h-3 text-gray-400" />
+                        )}
+                        <span className={`text-xs ${requirement.test ? 'text-green-600' : 'text-gray-500'}`}>
+                          {requirement.text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Confirm Password Field */}
-            <div>
+            <div className="relative">
               <label htmlFor="confirmPassword" className="form-label">
                 Confirm Password *
               </label>
-              <div className="relative">
-                <input
-                  id="confirmPassword"
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  className={`form-input pr-10 ${errors.confirmPassword ? 'border-red-300 focus:border-red-500' : ''}`}
-                  placeholder="Confirm your password"
-                  {...register('confirmPassword')}
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                >
-                  {showConfirmPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-400" />
-                  ) : (
-                    <Eye className="h-4 w-4 text-gray-400" />
-                  )}
-                </button>
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <div className="relative">
+                    <input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      autoComplete="new-password"
+                      className={`form-input pr-10 w-full ${errors.confirmPassword ? 'border-red-300 focus:border-red-500' : ''}`}
+                      placeholder="Confirm your password"
+                      {...register('confirmPassword')}
+                    />
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="h-4 w-4 text-gray-400" />
+                      ) : (
+                        <Eye className="h-4 w-4 text-gray-400" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                {errors.confirmPassword && (
+                  <div className="flex-shrink-0 w-48">
+                    <p className="form-error-box">
+                      {errors.confirmPassword.message}
+                    </p>
+                  </div>
+                )}
               </div>
-              {errors.confirmPassword && (
-                <p className="form-error">{errors.confirmPassword.message}</p>
-              )}
             </div>
 
             {/* Terms and Conditions */}
-            <div>
-              <div className="flex items-start gap-2">
-                <input
-                  id="terms"
-                  type="checkbox"
-                  className={`mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded ${
-                    errors.terms ? 'border-red-300' : ''
-                  }`}
-                  {...register('terms')}
-                />
-                <label htmlFor="terms" className="text-sm text-gray-700">
-                  I accept the{' '}
-                  <button
-                    type="button"
-                    className="text-primary-600 hover:text-primary-500 font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
-                    onClick={() => alert('Terms of Service would be displayed here')}
-                  >
-                    Terms of Service
-                  </button>{' '}
-                  and{' '}
-                  <button
-                    type="button"
-                    className="text-primary-600 hover:text-primary-500 font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
-                    onClick={() => alert('Privacy Policy would be displayed here')}
-                  >
-                    Privacy Policy
-                  </button>
-                </label>
+            <div className="relative">
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <div className="flex items-start gap-2">
+                    <input
+                      id="terms"
+                      type="checkbox"
+                      className={`mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 rounded transition-colors ${
+                        errors.terms ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'
+                      }`}
+                      {...register('terms')}
+                    />
+                    <label htmlFor="terms" className={`text-sm transition-colors ${
+                      errors.terms ? 'text-red-700' : 'text-gray-700'
+                    }`}>
+                      I accept the{' '}
+                      <button
+                        type="button"
+                        className={`font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 rounded transition-colors ${
+                          errors.terms 
+                            ? 'text-red-600 hover:text-red-500 focus:ring-red-500' 
+                            : 'text-primary-600 hover:text-primary-500 focus:ring-primary-500'
+                        }`}
+                        onClick={() => alert('Terms of Service would be displayed here')}
+                      >
+                        Terms of Service
+                      </button>{' '}
+                      and{' '}
+                      <button
+                        type="button"
+                        className={`font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 rounded transition-colors ${
+                          errors.terms 
+                            ? 'text-red-600 hover:text-red-500 focus:ring-red-500' 
+                            : 'text-primary-600 hover:text-primary-500 focus:ring-primary-500'
+                        }`}
+                        onClick={() => alert('Privacy Policy would be displayed here')}
+                      >
+                        Privacy Policy
+                      </button>
+                    </label>
+                  </div>
+                </div>
+                {errors.terms && (
+                  <div className="flex-shrink-0 w-48">
+                    <p className="form-error-box">
+                      {errors.terms.message}
+                    </p>
+                  </div>
+                )}
               </div>
-              {errors.terms && (
-                <p className="form-error mt-1">{errors.terms.message}</p>
-              )}
             </div>
           </div>
 
