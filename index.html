@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechForum - Advanced Developer Q&A Platform</title>
+    <meta name="description" content="A modern, full-stack forum application built for developers to ask questions, share knowledge, and build their professional reputation.">
+    <meta name="keywords" content="developer forum, Q&A platform, React, Node.js, MongoDB, full-stack">
+    <meta name="author" content="TechForum Development Team">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://david-foy89.github.io/Project4/">
+    <meta property="og:title" content="TechForum - Advanced Developer Q&A Platform">
+    <meta property="og:description" content="A modern, full-stack forum application built for developers to ask questions, share knowledge, and build their professional reputation.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://david-foy89.github.io/Project4/">
+    <meta property="twitter:title" content="TechForum - Advanced Developer Q&A Platform">
+    <meta property="twitter:description" content="A modern, full-stack forum application built for developers to ask questions, share knowledge, and build their professional reputation.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--secondary-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* Tech Stack Section */
+        .tech-stack {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-category h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-light);
+        }
+
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .screenshot-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                        linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 3rem;
+        }
+
+        .screenshot-info {
+            padding: 1.5rem;
+        }
+
+        .screenshot-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .screenshot-info p {
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section p,
+        .footer-section li {
+            color: #d1d5db;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.125rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                🚀 TechForum
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#tech-stack">Tech Stack</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="https://github.com/david-foy89/Project4" target="_blank">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="fade-in-up">
+                <h1>TechForum</h1>
+                <p>A modern, full-stack forum application built for developers to ask questions, share knowledge, and build their professional reputation.</p>
+                
+                <div class="badges">
+                    <span class="badge">React 18.2.0</span>
+                    <span class="badge">Node.js</span>
+                    <span class="badge">MongoDB</span>
+                    <span class="badge">JWT Auth</span>
+                    <span class="badge">Responsive</span>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="https://github.com/david-foy89/Project4" class="btn btn-primary" target="_blank">
+                        📂 View Source Code
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        ✨ Explore Features
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title scroll-animate">✨ Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Secure Authentication</h3>
+                    <p>JWT-based authentication with bcrypt password hashing, user profiles, and comprehensive settings management.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">💬</div>
+                    <h3>Q&A System</h3>
+                    <p>Rich question creation, community-driven answers with voting, and best answer selection system.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Advanced Search</h3>
+                    <p>Powerful search functionality with both navbar and page-level search bars for finding relevant content.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first approach with breakpoint-based layouts and touch-friendly UI components.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">📊</div>
+                    <h3>User Analytics</h3>
+                    <p>Reputation system, activity tracking, and gamification with achievement badges and statistics.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern UI/UX</h3>
+                    <p>Interactive components, accessibility features, and consistent theme system with animations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="tech-stack">
+        <div class="container">
+            <h2 class="section-title scroll-animate">🔧 Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-category scroll-animate">
+                    <h3>Frontend</h3>
+                    <ul class="tech-list">
+                        <li>React 18.2.0</li>
+                        <li>React Router 6</li>
+                        <li>React Hook Form</li>
+                        <li>Axios HTTP Client</li>
+                        <li>Lucide React Icons</li>
+                        <li>CSS3 with Flexbox/Grid</li>
+                    </ul>
+                </div>
+                <div class="tech-category scroll-animate">
+                    <h3>Backend</h3>
+                    <ul class="tech-list">
+                        <li>Node.js 18+</li>
+                        <li>Express.js 4</li>
+                        <li>MongoDB 7</li>
+                        <li>Mongoose ODM</li>
+                        <li>JWT Authentication</li>
+                        <li>bcryptjs Hashing</li>
+                    </ul>
+                </div>
+                <div class="tech-category scroll-animate">
+                    <h3>Development</h3>
+                    <ul class="tech-list">
+                        <li>Concurrently</li>
+                        <li>Nodemon</li>
+                        <li>ESLint</li>
+                        <li>Prettier</li>
+                        <li>Git Version Control</li>
+                        <li>VS Code</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="screenshots">
+        <div class="container">
+            <h2 class="section-title scroll-animate">📱 Application Preview</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot-card scroll-animate">
+                    <div class="screenshot-placeholder">🏠</div>
+                    <div class="screenshot-info">
+                        <h3>Home Dashboard</h3>
+                        <p>Clean, modern interface with navigation, search functionality, and question categories.</p>
+                    </div>
+                </div>
+                <div class="screenshot-card scroll-animate">
+                    <div class="screenshot-placeholder">❓</div>
+                    <div class="screenshot-info">
+                        <h3>Questions Page</h3>
+                        <p>Browse and search questions with voting, categories, and detailed question views.</p>
+                    </div>
+                </div>
+                <div class="screenshot-card scroll-animate">
+                    <div class="screenshot-placeholder">👤</div>
+                    <div class="screenshot-info">
+                        <h3>User Profile</h3>
+                        <p>Comprehensive user profiles with statistics, reputation tracking, and activity history.</p>
+                    </div>
+                </div>
+                <div class="screenshot-card scroll-animate">
+                    <div class="screenshot-placeholder">⚙️</div>
+                    <div class="screenshot-info">
+                        <h3>Settings Panel</h3>
+                        <p>Multi-tab settings interface for profile management, password changes, and preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🚀 TechForum</h3>
+                    <p>Advanced Developer Q&A Platform</p>
+                    <p>Built with modern web technologies for the developer community.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>🔗 Quick Links</h3>
+                    <ul>
+                        <li><a href="https://github.com/david-foy89/Project4" target="_blank">Source Code</a></li>
+                        <li><a href="https://github.com/david-foy89/Project4/blob/main/README.md" target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/david-foy89/Project4/issues" target="_blank">Issues</a></li>
+                        <li><a href="https://github.com/david-foy89" target="_blank">Developer Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>🛠️ Development</h3>
+                    <ul>
+                        <li>Full-Stack MERN Application</li>
+                        <li>Responsive Web Design</li>
+                        <li>RESTful API Development</li>
+                        <li>Database Design & Optimization</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechForum. Built with ❤️ for the developer community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-animate elements
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic typing effect for hero title (optional)
+        function typeWriter(text, element, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add any initialization code here
+            console.log('🚀 TechForum Landing Page Loaded!');
+        });
+    </script>
+</body>
+</html>
