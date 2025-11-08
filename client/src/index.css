@@ -588,6 +588,19 @@ code {
   .sm\\:col-span-2 {
     grid-column: span 2 / span 2;
   }
+
+  .sm\\:top-4 {
+    top: 1rem;
+  }
+
+  .sm\\:mt-4 {
+    margin-top: 1rem;
+  }
+
+  .sm\\:mx-4 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -725,13 +738,24 @@ code {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 }
 
 .main-content {
   flex: 1;
   display: flex;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Responsive layout adjustments */
+@media (min-width: 640px) {
+  .page-layout {
+    padding: 0 1rem;
+  }
+
+  .main-content {
+    margin-top: 1rem;
+  }
 }
 
 .sidebar {
