@@ -167,6 +167,294 @@ code {
   border: 0;
 }
 
+/* Responsive visibility utilities */
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.max-w-md {
+  max-width: 28rem;
+}
+
+.max-w-lg {
+  max-width: 32rem;
+}
+
+.max-w-xl {
+  max-width: 36rem;
+}
+
+/* Spacing utilities */
+.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 2rem;
+}
+
+.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.5rem;
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem;
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.5rem;
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.25rem;
+}
+
+/* Padding utilities */
+.p-4 {
+  padding: 1rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Margin utilities */
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+/* Grid utilities */
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+/* Background colors */
+.bg-gray-50 {
+  background-color: var(--gray-50);
+}
+
+.bg-blue-50 {
+  background-color: #eff6ff;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+/* Border colors */
+.border {
+  border-width: 1px;
+}
+
+.border-blue-200 {
+  border-color: #bfdbfe;
+}
+
+.border-gray-300 {
+  border-color: var(--gray-300);
+}
+
+.border-red-300 {
+  border-color: #fca5a5;
+}
+
+/* Border radius */
+.rounded {
+  border-radius: var(--radius-md);
+}
+
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+.rounded-r {
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+}
+
+/* Text colors */
+.text-blue-900 {
+  color: #1e3a8a;
+}
+
+.text-blue-800 {
+  color: #1e40af;
+}
+
+.text-red-300 {
+  color: #fca5a5;
+}
+
+/* Focus states */
+.focus\:border-red-500:focus {
+  border-color: #ef4444;
+}
+
+.focus\:border-primary-500:focus {
+  border-color: var(--primary-500);
+}
+
+.focus\:ring-2:focus {
+  box-shadow: 0 0 0 2px var(--primary-500);
+}
+
+.focus\:ring-primary-500:focus {
+  --tw-ring-color: var(--primary-500);
+}
+
+.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}
+
+/* Responsive utilities with breakpoints */
+@media (min-width: 640px) {
+  .sm\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 2rem;
+  }
+
+  .sm\:space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1.5rem;
+  }
+
+  .sm\:mt-8 {
+    margin-top: 2rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .sm\:w-12 {
+    width: 3rem;
+  }
+
+  .sm\:h-12 {
+    height: 3rem;
+  }
+
+  .sm\:p-4 {
+    padding: 1rem;
+  }
+
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 /* Typography */
 .text-xs {
   font-size: 0.75rem;
@@ -450,6 +738,60 @@ code {
 }
 
 /* Responsive Design */
+/* Mobile First Approach */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  /* Auth pages mobile optimization */
+  .min-h-screen {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .max-w-md {
+    max-width: 100%;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  /* Form improvements for mobile */
+  .form-input,
+  .form-textarea,
+  .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    min-height: 48px; /* Touch target size */
+  }
+
+  /* Card spacing */
+  .card {
+    padding: var(--spacing-md);
+  }
+
+  /* Responsive grid on mobile */
+  .grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .col-span-2 {
+    grid-column: span 1 / span 1;
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
@@ -467,6 +809,29 @@ code {
 
   .content-area {
     padding: var(--spacing-md);
+  }
+
+  /* Better spacing for tablets */
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1.5rem;
+  }
+
+  .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Tablet landscape adjustments */
+  .max-w-md {
+    max-width: 28rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Desktop enhancements */
+  .min-h-screen {
+    padding: var(--spacing-2xl) var(--spacing-md);
   }
 }
 

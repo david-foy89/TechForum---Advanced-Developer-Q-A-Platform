@@ -95,22 +95,22 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-6 px-4 sm:py-12 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-6 sm:space-y-8">
         {/* Header */}
         <div className="text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <MessageSquare className="w-12 h-12 text-primary-600" />
-            <h1 className="text-3xl font-bold text-gray-900">TechForum</h1>
+            <MessageSquare className="w-10 h-10 sm:w-12 sm:h-12 text-primary-600" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">TechForum</h1>
           </div>
-          <h2 className="text-2xl font-semibold text-gray-900">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
             Create your account
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             Already have an account?{' '}
             <Link
               to="/login"
-              className="font-medium text-primary-600 hover:text-primary-500 transition-colors"
+              className="font-medium text-primary-600 hover:text-primary-500 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
             >
               Sign in here
             </Link>
@@ -118,7 +118,7 @@ const Register = () => {
         </div>
 
         {/* Registration Form */}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className="mt-6 sm:mt-8 space-y-4 sm:space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             {/* Username Field */}
             <div>
@@ -282,13 +282,21 @@ const Register = () => {
                 />
                 <label htmlFor="terms" className="text-sm text-gray-700">
                   I accept the{' '}
-                  <a href="#" className="text-primary-600 hover:text-primary-500 font-medium">
+                  <button
+                    type="button"
+                    className="text-primary-600 hover:text-primary-500 font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
+                    onClick={() => alert('Terms of Service would be displayed here')}
+                  >
                     Terms of Service
-                  </a>{' '}
+                  </button>{' '}
                   and{' '}
-                  <a href="#" className="text-primary-600 hover:text-primary-500 font-medium">
+                  <button
+                    type="button"
+                    className="text-primary-600 hover:text-primary-500 font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
+                    onClick={() => alert('Privacy Policy would be displayed here')}
+                  >
                     Privacy Policy
-                  </a>
+                  </button>
                 </label>
               </div>
               {errors.terms && (

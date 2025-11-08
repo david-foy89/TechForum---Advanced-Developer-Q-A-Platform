@@ -44,22 +44,22 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-6 px-4 sm:py-12 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-6 sm:space-y-8">
         {/* Header */}
         <div className="text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <MessageSquare className="w-12 h-12 text-primary-600" />
-            <h1 className="text-3xl font-bold text-gray-900">TechForum</h1>
+            <MessageSquare className="w-10 h-10 sm:w-12 sm:h-12 text-primary-600" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">TechForum</h1>
           </div>
-          <h2 className="text-2xl font-semibold text-gray-900">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
             Sign in to your account
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             Or{' '}
             <Link
               to="/register"
-              className="font-medium text-primary-600 hover:text-primary-500 transition-colors"
+              className="font-medium text-primary-600 hover:text-primary-500 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
             >
               create a new account
             </Link>
@@ -67,7 +67,7 @@ const Login = () => {
         </div>
 
         {/* Login Form */}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className="mt-6 sm:mt-8 space-y-4 sm:space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             {/* Username Field */}
             <div>
@@ -103,8 +103,9 @@ const Login = () => {
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center hover:bg-gray-50 rounded-r focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4 text-gray-400" />
@@ -134,12 +135,13 @@ const Login = () => {
             </div>
 
             <div className="text-sm">
-              <a
-                href="#"
-                className="font-medium text-primary-600 hover:text-primary-500 transition-colors"
+              <button
+                type="button"
+                className="font-medium text-primary-600 hover:text-primary-500 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
+                onClick={() => alert('Forgot password functionality would be implemented here')}
               >
                 Forgot your password?
-              </a>
+              </button>
             </div>
           </div>
 
@@ -163,12 +165,12 @@ const Login = () => {
         </form>
 
         {/* Demo Accounts */}
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mt-6 p-3 sm:p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <h3 className="text-sm font-medium text-blue-900 mb-2">Demo Accounts</h3>
-          <div className="space-y-1 text-xs text-blue-800">
-            <p><strong>Admin:</strong> admin / admin123</p>
-            <p><strong>Developer:</strong> developer / dev123</p>
-            <p><strong>User:</strong> newbie / newbie123</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-blue-800">
+            <div><strong>Admin:</strong> admin / admin123</div>
+            <div><strong>Developer:</strong> developer / dev123</div>
+            <div className="sm:col-span-2"><strong>User:</strong> newbie / newbie123</div>
           </div>
         </div>
       </div>
